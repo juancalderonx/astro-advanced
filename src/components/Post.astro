@@ -14,7 +14,7 @@ const { heroImage, pubDate, tags, title, slug } = Astro.props;
 >
   <div transition:name={`blog_transition_${slug}`}>
     <article>
-      <a href={`blog/${slug}`}>
+      <a href={`/blog/${slug}`}>
         <Image
           src={heroImage}
           alt="Computador y logo de programación del post de blog"

@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Post from "@components/Post.astro";
+import PostList from "@components/PostList.astro";
+import { getAllTags } from "@utils/get-all-tags";
+
+export const getStaticPaths = (async () => {
+  const tags = (await getAllTags()).map((tag) => tag.toLowerCase());
+  const paths = tags.map((tag) => ({ params: { tag }, props: { tag } }));
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.props;
+
+const posts = (
+  await getCollection("blog", ({ data }) => {
+    const hasTag = data.tags.map((tag) => tag.toLowerCase()).includes(tag);
+    return hasTag;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<PostList>
+  {posts.map((post) => <Post {...post.data} slug={post.slug} />)}
+</PostList>

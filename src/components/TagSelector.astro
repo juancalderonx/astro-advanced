@@ -1,0 +1,26 @@
+---
+import { getAllTags } from "@utils/get-all-tags";
+import { Icon } from "astro-icon/components";
+import Tag from "@components/Tag.astro";
+
+const tags = await getAllTags();
+---
+
+<div class="flex gap-3">
+  <span
+    id="selectorButton"
+    class="w-12 h-12 rounded-full grid place-items-center border border-zinc-700 cursor-pointer"
+  >
+    <Icon class="text-white text-2xl" name="lucide:list-filter" />
+  </span>
+  <div id="selector" class="opacity-0 transition-opacity duration-300">
+    {tags.map((tag) => <Tag tag={tag} />)}
+  </div>
+</div>
+
+<script data-astro-rerun>
+  document.getElementById("selectorButton")?.addEventListener("click", () => {
+    const selector = document.getElementById("selector");
+    selector?.classList.toggle("opacity-0");
+  });
+</script>
