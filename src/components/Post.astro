@@ -2,23 +2,24 @@
 import { type CollectionEntry } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 import PostTag from "@components/PostTag.astro";
+import { Image } from "astro:assets";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & { slug: string };
 
-const { heroImage, pubDate, tags, title } = Astro.props;
+const { heroImage, pubDate, tags, title, slug } = Astro.props;
 ---
 
 <li
   class="border-extra-soft-white text-soft-white hover:bg-soft-light rounded-xl border transition-colors duration-200"
 >
-  <div>
+  <div transition:name={`blog_transition_${slug}`}>
     <article>
-      <a>
-        <img
+      <a href={`blog/${slug}`}>
+        <Image
           src={heroImage}
-          alt=""
-          width="1020"
-          height="520"
+          alt="Computador y logo de programación del post de blog"
+          width={1020}
+          height={520}
           class="aspect-[16/5] rounded-t-xl object-cover"
         />
         <div class="w-full">

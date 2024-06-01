@@ -1,5 +1,5 @@
 ---
-heroImage: "https://generated.vusercontent.net/placeholder.svg"
+heroImage: "/assets/photo-1.webp"
 title: "My second post"
 pubDate: "Jun 05 2024"
 tags: ["second", "post"]
