@@ -5,10 +5,14 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://localhost:4321",
-  integrations: [tailwind(), icon({
-    include: {
-      lucid: ["*"]
-    }
-  }), sitemap()]
+  site: "https://astro-advanced.vercel.app/",
+  integrations: [
+    tailwind(),
+    icon({
+      include: {
+        lucid: ["*"],
+      },
+    }),
+    sitemap(),
+  ],
 });
